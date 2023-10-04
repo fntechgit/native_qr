@@ -55,10 +55,10 @@ class NativeQrPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   private fun getClient() {
+    // @see https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner
     val options = GmsBarcodeScannerOptions.Builder()
-    .setBarcodeFormats(
-        Barcode.FORMAT_QR_CODE
-        )
+      .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
+      .enableAutoZoom() // available on 16.1.0 and higher
     .build()
     scanner = GmsBarcodeScanning.getClient(context, options)
   }
